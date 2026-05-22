@@ -1,313 +1,69 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>FC SEOLLEVEN</title>
+  <meta charset="UTF-8">
+  <title>USD/KRW 예측 대시보드</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
-      margin: 0;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5;
-      color: #111;
-    }
-
-    header {
-      background-color: #111;
-      color: white;
-      padding: 20px 60px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    header h1 {
-      margin: 0;
-      font-size: 24px;
-      letter-spacing: 2px;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      margin-left: 24px;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #d4af37;
-    }
-
-    .hero {
-      min-height: 500px;
-      background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6));
-      background-size: cover;
-      background-position: center;
-      color: white;
-      display: flex;
-      align-items: center;
-      padding: 80px 60px;
-    }
-
-    .hero-content {
-      max-width: 600px;
-    }
-
-    .hero h2 {
-      font-size: 56px;
-      margin: 0 0 20px;
-    }
-
-    .hero p {
-      font-size: 20px;
-      line-height: 1.6;
-      margin-bottom: 30px;
-    }
-
-    .hero button {
-      background-color: #d4af37;
-      color: #111;
-      border: none;
-      padding: 14px 28px;
-      font-size: 16px;
-      font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .hero button:hover {
-      background-color: white;
-    }
-
-    section {
-      padding: 70px 60px;
-      max-width: 1100px;
-      margin: 0 auto;
-    }
-
-    section h2 {
-      font-size: 34px;
-      margin-bottom: 20px;
-    }
-
-    .about p {
-      font-size: 18px;
-      line-height: 1.8;
-    }
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 24px;
-      margin-top: 30px;
+      background: #f4f6f8;
+      padding: 40px;
     }
 
     .card {
-      background-color: white;
+      background: white;
       padding: 30px;
       border-radius: 16px;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+      max-width: 600px;
+      margin: 0 auto;
     }
 
-    .card h3 {
+    h1 {
       margin-top: 0;
-      font-size: 22px;
     }
 
-    .card p {
-      color: #555;
-      line-height: 1.6;
-    }
-
-    .schedule-table {
-      width: 100%;
-      border-collapse: collapse;
-      background-color: white;
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
-    }
-
-    .schedule-table th,
-    .schedule-table td {
-      padding: 18px;
-      border-bottom: 1px solid #eee;
-      text-align: left;
-    }
-
-    .schedule-table th {
-      background-color: #111;
-      color: white;
-    }
-
-    .contact {
-      text-align: center;
-      background-color: #111;
-      color: white;
-      max-width: none;
-    }
-
-    .contact button {
-      background-color: #d4af37;
-      color: #111;
-      border: none;
-      padding: 14px 28px;
-      font-size: 16px;
+    .value {
+      font-size: 42px;
       font-weight: bold;
-      border-radius: 8px;
-      cursor: pointer;
+      color: #111;
     }
 
-    footer {
-      background-color: #000;
-      color: #aaa;
-      text-align: center;
-      padding: 20px;
+    .signal {
+      font-size: 20px;
+      color: #555;
+    }
+
+    .time {
+      margin-top: 20px;
       font-size: 14px;
-    }
-
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 16px;
-        padding: 20px;
-      }
-
-      nav a {
-        margin: 0 8px;
-      }
-
-      .hero {
-        padding: 60px 24px;
-      }
-
-      .hero h2 {
-        font-size: 38px;
-      }
-
-      section {
-        padding: 50px 24px;
-      }
-
-      .cards {
-        grid-template-columns: 1fr;
-      }
+      color: #888;
     }
   </style>
 </head>
 
 <body>
-
-  <header>
-    <h1>FC SEOLLEVEN</h1>
-
-    <nav>
-      <a href="#about">About</a>
-      <a href="#players">Players</a>
-      <a href="#schedule">Schedule</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
-
-  <div class="hero">
-    <div class="hero-content">
-      <h2>FC SEOLLEVEN</h2>
-      <p>
-        포항에서 시작해 서울에서 새롭게 만들어진 축구팀.
-        우리는 팀워크, 열정, 그리고 승리를 향해 함께 뛰는 팀입니다.
-      </p>
-      <button onclick="showMessage()">Join Our Team</button>
-    </div>
+  <div class="card">
+    <h1>USD/KRW 예측 결과</h1>
+    <div class="value" id="predictedValue">불러오는 중...</div>
+    <p class="signal" id="signal"></p>
+    <p class="time" id="updatedAt"></p>
   </div>
 
-  <section id="about" class="about">
-    <h2>About Us</h2>
-    <p>
-      FC SEOLLEVEN은 Seoul과 Eleven의 의미를 담은 팀입니다.
-      포항에서 이어진 축구에 대한 열정을 서울에서 새롭게 확장하며,
-      경기 안팎에서 함께 성장하는 팀 문화를 지향합니다.
-    </p>
-  </section>
-
-  <section id="players">
-    <h2>Team Identity</h2>
-
-    <div class="cards">
-      <div class="card">
-        <h3>Teamwork</h3>
-        <p>
-          개인의 능력보다 팀 전체의 움직임을 중요하게 생각합니다.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>Passion</h3>
-        <p>
-          매 경기 최.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3>POSTECH Spirit</h3>
-        <p>
-          POSTECH 출신 팀원들의 끈기와 집중력을 팀의 정체성으로 이어갑니다.
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <section id="schedule">
-    <h2>Match Schedule</h2>
-
-    <table class="schedule-table">
-      <tr>
-        <th>Date</th>
-        <th>Opponent</th>
-        <th>Location</th>
-      </tr>
-      <tr>
-        <td>2026.06.01</td>
-        <td>Seoul United</td>
-        <td>Seoul Stadium</td>
-      </tr>
-      <tr>
-        <td>2026.06.15</td>
-        <td>Pohang Friends</td>
-        <td>Hangang Field</td>
-      </tr>
-      <tr>
-        <td>2026.06.29</td>
-        <td>Eleven Stars</td>
-        <td>Jamsil Ground</td>
-      </tr>
-    </table>
-  </section>
-
-  <section id="contact" class="contact">
-    <h2>Contact Us</h2>
-    <p>팀 가입, 경기 문의, 친선전 제안은 아래 버튼을 눌러 주세요.</p>
-    <button onclick="contactTeam()">문의하기</button>
-  </section>
-
-  <footer>
-    © 2026 FC SEOLLEVEN. All Rights Reserved.
-  </footer>
-
   <script>
-    function showMessage() {
-      alert("FC SEOLLEVEN에 오신 것을 환영합니다!");
-    }
+    fetch("result.json")
+      .then(response => response.json())
+      .then(data => {
+        document.getElementById("predictedValue").innerText =
+          data.predicted_value + " 원";
 
-    function contactTeam() {
-      alert("문의가 접수되었습니다. 담당자가 확인 후 연락드리겠습니다.");
-    }
+        document.getElementById("signal").innerText =
+          data.signal;
+
+        document.getElementById("updatedAt").innerText =
+          "업데이트 시간: " + data.updated_at;
+      });
   </script>
-
 </body>
 </html>
